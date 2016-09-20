@@ -214,7 +214,10 @@ def checklist(todo):
 class NewPost(BlogHandler):
     def get(self):
         if self.user:
-            self.render("newpost.html")
+            if self.user.name == "wonjunee":
+                self.render("newpost.html")
+            else:
+                self.render("/notallowed0")
         else:
             self.redirect("/login")
 
@@ -353,15 +356,7 @@ class DeletePost(BlogHandler):
 
 		if self.user:
 			if self.user.name == post.username:
-			    self.render("deletepost.html", p = post, subject=post.subject,
-                    gre_words_more = post.gre_words_more,
-                    gre_essays_more = post.gre_essays_more,
-                    gre_verbal_more = post.gre_verbal_more,
-                    gre_math_more = post.gre_math_more,
-                    school_research_more = post.school_research_more,
-                    sop_more = post.sop_more,
-                    other_more = post.other_more,
-                    )
+			    self.render("deletepost.html", p = post, subject=post.subject)
 			else:
 				self.redirect("/notallowed0")
 		else:
@@ -381,45 +376,6 @@ class DeletePost(BlogHandler):
 			self.redirect('/deleted0')
 		elif delete_choice == "no":
 			self.redirect('/')
-
-# A class for liking a post
-class LikePost(BlogHandler):
-    def get(self, post_id):
-        if not self.user:
-            self.redirect('/login')
-        else:
-            key = db.Key.from_path('Post', int(post_id), parent=blog_key())
-            post = db.get(key)
-
-            # The writer cannot like his own post
-            if self.user.name == post.username:
-                self.redirect('/')
-            else:
-                like_number = int(post.like_number)
-                if not post.like_users:
-                    users = []
-                else:
-                    users = post.like_users.split(",")
-
-                if self.user.name in users:
-                    like_number -= 1
-                    users.remove(self.user.name)
-                    like_url = "/like0"
-                else:
-                    like_number += 1
-                    users.append(self.user.name)
-                    like_url = "/like1"
-
-                users = ",".join(users)
-                post.like_number  = str(like_number)
-                post.like_users = users
-                post.put()
-
-                posts = Post.all().order('-created')
-
-                self.render('front.html', posts = posts)
-                self.redirect(like_url)
-
 
 USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
 def valid_username(username):
@@ -499,14 +455,10 @@ class Login(BlogHandler):
         username = self.request.get('username')
         password = self.request.get('password')
 
-        if username == "wonjunee" or username == "yuri":
-            u = User.login(username, password)
-            if u:
-                self.login(u)
-                self.redirect('/')
-            else:
-                msg = 'Invalid login'
-                self.render('login-form.html', error = msg)
+        u = User.login(username, password)
+        if u:
+            self.login(u)
+            self.redirect('/')
         else:
             msg = 'Invalid login'
             self.render('login-form.html', error = msg)
@@ -542,13 +494,6 @@ class NewComment(BlogHandler):
             pkey=post.key(),
             p = post
             )
-                    # gre_words_more = post.gre_words_more,
-            # gre_essays_more = post.gre_essays_more,
-            # gre_verbal_more = post.gre_verbal_more,
-            # gre_math_more = post.gre_math_more,
-            # school_research_more = post.school_research_more,
-            # sop_more = post.sop_more,
-            # other_more = post.other_more,
 
     def post(self, post_id):
         if self.user:
@@ -579,13 +524,6 @@ class NewComment(BlogHandler):
                     subject=post.subject,
                     pkey=post.key(),
                     p = post,
-                    # gre_words_more = post.gre_words_more,
-                    # gre_essays_more = post.gre_essays_more,
-                    # gre_verbal_more = post.gre_verbal_more,
-                    # gre_math_more = post.gre_math_more,
-                    # school_research_more = post.school_research_more,
-                    # sop_more = post.sop_more,
-                    # other_more = post.other_more,
                     error=error)
         else:
             self.redirect("/login")
