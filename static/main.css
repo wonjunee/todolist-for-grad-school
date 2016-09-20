@@ -117,6 +117,18 @@ input[type=text], input[type=password] {
     text-decoration: none;
 }
 
+label.yesorno {
+    display: block;
+    color: #222;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    text-decoration: none;
+}
+
+
 .menu {
     text-align: center;
 }
@@ -237,4 +249,14 @@ a.summary-date {
     font-weight: bold;
     text-decoration: none;
     color: #999;
+}
+
+.goback-button {
+    display: block;
+    color: #222;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 20px;
+    text-decoration: none;    
 }
