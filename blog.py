@@ -217,7 +217,7 @@ class NewPost(BlogHandler):
             if self.user.name == "wonjunee":
                 self.render("newpost.html")
             else:
-                self.render("/notallowed0")
+                self.redirect("/notallowed0")
         else:
             self.redirect("/login")
 
