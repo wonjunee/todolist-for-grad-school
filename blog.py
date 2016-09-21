@@ -167,10 +167,9 @@ class Post(db.Model):
         self.total = self.gre_words + self.gre_essays + self.gre_verbal + self.gre_math + self.school_research + self.sop + self.other
         return render_str("post.html", p = self)
 
-    def render_comments(self):
-        # self._render_text = self.content.replace('\n', '<br>')
+    def render_comments(self, username):
         self.total = self.gre_words + self.gre_essays + self.gre_verbal + self.gre_math + self.school_research + self.sop + self.other
-        return render_str("post-comments.html", p = self)
+        return render_str("post-comments.html", p = self, username = username)
 
     @property
     def comments(self):

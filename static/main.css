@@ -187,7 +187,7 @@ a.menu-item + a.menu-item {
 }
 
 .post-content {
-    margin-top: 5px;
+    margin-top: 1px;
 }
 
 .original-post {
@@ -238,6 +238,11 @@ h1.summary-title {
 
 h3.summary-content {
     text-align: center;
+}
+
+h3.completed-tasks {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 a.summary-date {
