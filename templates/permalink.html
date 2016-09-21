@@ -2,6 +2,6 @@
 
 {% block content %}
 
-    {{ post.render_comments() | safe }}
+    {{ post.render_comments(user.name) | safe }}
 
 {% endblock %}
