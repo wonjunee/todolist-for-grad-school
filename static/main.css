@@ -3,7 +3,7 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 14px;
 
-    width: 800px;
+    width: 600px;
     margin: 0 auto;
     padding: 10px;
     color: #333;
@@ -210,8 +210,14 @@ a.menu-item + a.menu-item {
     color: #666;
 }
 
+.comments-contents{
+    font-size: 16px;
+    text-decoration: none;
+    color: #666;
+}
+
 .comment-edit {
-    font-size: 12px;
+    font-size: 15px;
     font-weight: bold;
     text-decoration: none;
     color: #999;
