@@ -17,7 +17,7 @@
 
   <div class="post-content">
   <h3>{{ p.total }} Tasks Completed</h3>
-    <table style="margin-left:5%">
+    <table>
       <tr>
         <td class="label">
           {{p.gre_words}} GRE - Words
@@ -64,7 +64,7 @@
       </tr>
       <tr>
         <td class="label">
-          {{p.sop}} Statement of Purpose
+          {{p.sop}} SOP
         </td>
         
         <td class="content">
@@ -82,7 +82,6 @@
       </tr>
     </table>
   </div>
-  
     <br>
     <div class="comment-heading">
       {{p.comments.count()}} {% if p.comments.count() > 1 %}Comments{% else %}Comment{% 
@@ -91,7 +90,9 @@
     <div class="comments-contents">
       {% for comment in p.comments %}
         {{comment.comment}} - <b>{{comment.username}}</b> <br>
-        {{comment.created.strftime("%b %d, %Y")}}
+        <div class="comment-date">
+          {{comment.created.strftime("%b %d, %Y")}}
+        </div>
         <a href="/{{p.key().id()}}/comment/{{comment.key().id()}}/edit" class="comment-edit">
           Edit
         </a>
