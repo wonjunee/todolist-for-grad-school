@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>To do list checking</h2>
+  <h1>To do list checking</h1>
 
     <form method="post">
       <label>
@@ -17,7 +17,7 @@
                 <input type="checkbox" name="todo" value="gre-words">GRE - Words<br>
               </label>
             </td>
-            <td class="content">
+            <td>
               <textarea class="todolist" name="gre-words">{{gre_words}}</textarea>
             </td>
           </tr>
@@ -27,7 +27,7 @@
                 <input type="checkbox" name="todo" value="gre-essays">GRE - Essays
               </label>
             </td> 
-            <td class="content">
+            <td>
               <textarea class="todolist" name="gre-essays">{{gre_essays}}</textarea>
             </td>
           </tr>
@@ -37,7 +37,7 @@
                 <input type="checkbox" name="todo" value="gre-verbal">GRE - Verbal
               </label>
             </td>
-            <td class="content">
+            <td>
               <textarea class="todolist" name="gre-verbal">{{gre_verbal}}</textarea>
             </td>
           </tr>
@@ -47,7 +47,7 @@
               <input type="checkbox" name="todo" value="gre-math">GRE Math
               </label>
             </td>
-            <td class="content">
+            <td>
               <textarea class="todolist" name="gre-math">{{gre_math}}</textarea>
             </td>
           </tr>
@@ -57,7 +57,7 @@
               <input type="checkbox" name="todo" value="school-research">School Research
               </label>
             </td>
-            <td class="content">
+            <td>
               <textarea class="todolist" name="school-research">{{school_research}}</textarea>
             </td>
           </tr>
@@ -67,7 +67,7 @@
               <input type="checkbox" name="todo" value="sop">Statement of Purpose
               </label>
             </td>
-            <td class="content">
+            <td>
               <textarea class="todolist" name="sop">{{sop}}</textarea>
             </td>
           </tr>
@@ -77,7 +77,7 @@
               <input type="checkbox" name="todo" value="other">Other
               </label>
             </td>
-            <td class="content">
+            <td>
               <textarea class="todolist" name="other">{{other}}</textarea>
             </td>
           </tr>
