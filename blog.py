@@ -177,9 +177,12 @@ class Post(db.Model):
         return Comment.all().filter("post = ", str(self.key().id()))
 
 class BlogFront(BlogHandler):
-	def get(self):
-		posts = Post.all().order('-created')
-		self.render('front.html', posts = posts)
+    def get(self):
+        if self.user:
+            posts = Post.all().order('-created')
+            self.render('front.html', posts = posts)
+        else:
+            self.redirect('/login')
 
 class PostPage(BlogHandler):
     def get(self, post_id):
@@ -614,31 +617,34 @@ class Deleted(BlogHandler):
 # A class for summary
 class Summary(BlogHandler):
     def get(self):
-        posts = Post.all().order('-created')
-        gre_words = 0
-        gre_essays = 0
-        gre_verbal = 0
-        gre_math = 0
-        school_research = 0
-        sop = 0
-        other = 0
-        for post in posts:
-            gre_words += post.gre_words
-            gre_essays += post.gre_essays
-            gre_verbal += post.gre_verbal
-            gre_math += post.gre_math
-            school_research += post.school_research
-            sop += post.sop
-            other += post.other
+        if self.user:
+            posts = Post.all().order('-created')
+            gre_words = 0
+            gre_essays = 0
+            gre_verbal = 0
+            gre_math = 0
+            school_research = 0
+            sop = 0
+            other = 0
+            for post in posts:
+                gre_words += post.gre_words
+                gre_essays += post.gre_essays
+                gre_verbal += post.gre_verbal
+                gre_math += post.gre_math
+                school_research += post.school_research
+                sop += post.sop
+                other += post.other
 
-        self.render('summary.html', posts = posts, 
-            gre_words = gre_words,
-            gre_essays = gre_essays,
-            gre_verbal = gre_verbal,
-            gre_math = gre_math,
-            school_research = school_research,
-            sop = sop,
-            other = other)
+            self.render('summary.html', posts = posts, 
+                gre_words = gre_words,
+                gre_essays = gre_essays,
+                gre_verbal = gre_verbal,
+                gre_math = gre_math,
+                school_research = school_research,
+                sop = sop,
+                other = other)
+        else:
+            self.redirect('/login')
 
 app = webapp2.WSGIApplication([
                                ('/?', BlogFront),
