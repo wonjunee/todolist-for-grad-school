@@ -45,16 +45,6 @@ label {
   font-size: 15px;
 }
 
-td.label {
-    font-size: 15px;
-    font-weight: bold;
-    padding-right:20px;
-}
-
-tr  {
-    line-height: 15px;
-}
-
 label + label {
     margin-top: 20px;
 }
@@ -135,7 +125,7 @@ label.yesorno {
 
 a.menu-item {
     color: #222;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: bold;
     text-decoration: none;
 }
@@ -259,4 +249,18 @@ a.summary-date {
     text-align: left;
     margin-top: 20px;
     text-decoration: none;    
+}
+
+td.content {
+    font-size: 16px;
+}
+
+td.label {
+    font-size: 16px;
+    font-weight: bold;
+    padding-right:20px;
+}
+
+tr  {
+    line-height: 15px;
 }
