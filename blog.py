@@ -516,6 +516,7 @@ class NewComment(BlogHandler):
             if comment:
                 # check how author was defined
                 username = self.user.name
+                comment = comment.replace('\n', '<br>')
                 c = Comment(
                     comment=comment,
                     post=post_id,
