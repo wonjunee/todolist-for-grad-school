@@ -4,7 +4,7 @@
   <h2>edit comment</h2>
     <form method="post">
       <label>
-        <textarea class="comment" name="comment">{{comment}}</textarea>
+        <textarea class="comment" name="comment">{{comment.re_render() | safe}}</textarea>
       </label>
 
       <div class="error">{{error}}</div>

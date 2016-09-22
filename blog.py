@@ -489,6 +489,11 @@ class Comment(db.Model):
     created = db.DateTimeProperty(auto_now_add = True)
     username = db.StringProperty(required = True)
 
+    def render(self):
+        return self.comment.replace('\n', '<br>')
+    def re_render(self):
+        return self.comment.replace('<br>','\n')
+
 class NewComment(BlogHandler):
     def get(self,post_id):
         if not self.user:
@@ -516,7 +521,6 @@ class NewComment(BlogHandler):
             if comment:
                 # check how author was defined
                 username = self.user.name
-                comment = comment.replace('\n', '<br>')
                 c = Comment(
                     comment=comment,
                     post=post_id,
@@ -546,7 +550,7 @@ class EditComment(BlogHandler):
             if not comment:
                 self.redirect('/notallowed1')
             else:
-                self.render("editcomment.html", comment=comment.comment)
+                self.render("editcomment.html", comment=comment)
         else:
             self.redirect("/login")
 
@@ -575,7 +579,7 @@ class DeleteComment(BlogHandler):
 
         if self.user:
             if comment:
-                self.render("deletecomment.html", comment=comment.comment)
+                self.render("deletecomment.html", comment=comment)
             else:
                 self.redirect("/notallowed1")
         else:

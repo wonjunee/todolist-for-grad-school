@@ -26,7 +26,7 @@
     </div>
     <div class="comments-contents">
       {% for comment in p.comments %}
-        {{comment.comment}} - <b>{{comment.username}}</b> <br>
+        {{comment.render() | safe}} - <b>{{comment.username}}</b> <br>
         {{comment.created.strftime("%b %d, %Y")}}
         <a href="/{{p.key().id()}}/comment/{{comment.key().id()}}/edit" class="comment-edit">
           Edit
